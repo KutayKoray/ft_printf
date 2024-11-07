@@ -15,5 +15,11 @@
 
 void    ft_putnbr(int n);
 void    ft_putchar(char c);
+char *ft_itoa(int n, int base);
+int print_str(char *s);
+char *to_upper(char *str);
+char* ft_uitoa(unsigned long value, int base);
+int get_length(int value, int base);
+void reverse(char* buffer, int length);
 
 #endif

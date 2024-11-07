@@ -14,36 +14,78 @@
 #include <stddef.h>
 #include "ft_printf.h"
 
+int print_char(int c)
+{
+	ft_putchar(c);
+	return (1);
+}
+
+int v_format(va_list va, const char format)
+{
+	int len;
+
+	len = 0;
+	if (format == 'c')
+		len += print_char(va_arg(va, int));
+	else if (format == 's')
+		len += print_str(va_arg(va, char *));
+	else if (format == 'd' || format == 'i')
+		len += print_str(ft_itoa(va_arg(va, int), 10));
+	else if (format == 'u')
+		len += print_str(ft_uitoa(va_arg(va, unsigned int), 10));
+	else if (format == 'x')
+		len += print_str(ft_uitoa(va_arg(va, unsigned int), 16));
+	else if (format == 'X')
+		len += print_str(to_upper(ft_uitoa(va_arg(va, unsigned int), 16)));
+	else if (format == 'p')
+	{
+		len += print_str("0x");
+		len += print_str(ft_uitoa(va_arg(va, unsigned long), 16));
+	}
+	else if (format == '%')
+		len += print_char('%');
+	return (len);
+}
+
 int ft_printf(const char *format, ...)
 {
-		va_list va;
-		size_t counter;
+	va_list va;
+	size_t len;
 
-		counter = 0;
-		va_start(va, format);
-		if (format[counter] == '%')
+	len = 0;
+	va_start(va, format);
+	while (*format)
+	{
+		if (*format == '%')
 		{
-			counter++;
-			if (format[counter] == 'c')
-				ft_putchar(va_arg(va, int));
-			else if (format[counter] == 's')
-				ft_putstr(va_arg(va, char *));
-			else if (format[counter] == 'p') {}
-				// unsigned long long kullanılabilir.
-			else if (format[counter] == 'i' || format[counter] == 'd')
-				ft_putnbr(va_arg(va, int));
-			else if (format[counter] == 'u') {}
-				// unsigned int yazdır
-			else if (format[counter] == 'x') {}
-				// hexadeciaml sayı kucuk harfler ile yazdır
-			else if (format[counter] == 'X') {}
-				// hexadecimal sayı buyuk harfler ile yazdır
-			else if (format[counter] == '%')
-				write(1, "%", 1);
-			
+			format++;
+			len += v_format(va, *format);
 		}
 		else
-		{
-			ft_putchar(format[counter]);
-		}
+			len += print_char(*format);
+		format++;
+	}
+	va_end(va);
+	return (len);
+}
+#include <stdio.h>
+
+int main()
+{
+
+	ft_printf("%s%s%s", "And ", "some", "joined");
+
+	// int a = -42;
+
+	// int len = ft_printf("%i\n", a);
+	// int len2 = printf("%i\n", a);
+	// printf("len: %d\n", len);
+	// printf("len2: %d\n", len2);
+
+	/*	bu senaryoda farklılık var.
+	int len = ft_printf("%\n");
+	int len2 = printf("%\n");
+	printf("len: %d\n", len);
+	printf("len2: %d\n", len2);
+	*/
 }
