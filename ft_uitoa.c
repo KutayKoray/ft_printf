@@ -16,8 +16,9 @@
 
 char	*ft_uitoa(unsigned long value, int base)
 {
-	size_t	i;
-	size_t	length;
+	// printf("\n%lu\n", value);
+	unsigned long	i;
+	unsigned long	length;
 	char	*buffer;
 	int		remainder;
 

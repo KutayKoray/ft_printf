@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void	reverse(char *buffer, int length)
 {
@@ -41,9 +42,9 @@ int	handle_negative(int *value)
 	return (0);
 }
 
-int	get_length(int value, int base)
+unsigned long	get_length(unsigned long value, int base)
 {
-	int	length;
+	unsigned long	length;
 
 	length = 0;
 	if (value == 0)
