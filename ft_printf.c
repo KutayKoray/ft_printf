@@ -6,23 +6,23 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 16:52:30 by kkoray            #+#    #+#             */
-/*   Updated: 2024/11/07 17:47:41 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/11/10 15:29:01 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include <stdarg.h>
 #include <stddef.h>
-#include "ft_printf.h"
 
-int print_char(int c)
+int	print_char(int c)
 {
 	ft_putchar(c);
 	return (1);
 }
 
-int v_format(va_list va, const char format)
+int	v_format(va_list va, const char format)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (format == 'c')
@@ -30,27 +30,27 @@ int v_format(va_list va, const char format)
 	else if (format == 's')
 		len += print_str(va_arg(va, char *));
 	else if (format == 'd' || format == 'i')
-		len += print_str(ft_itoa(va_arg(va, int), 10));
+		len += print_str_free(ft_itoa(va_arg(va, int), 10));
 	else if (format == 'u')
-		len += print_str(ft_uitoa(va_arg(va, unsigned int), 10));
+		len += print_str_free(ft_uitoa(va_arg(va, unsigned int), 10));
 	else if (format == 'x')
-		len += print_str(ft_uitoa(va_arg(va, unsigned int), 16));
+		len += print_str_free(ft_uitoa(va_arg(va, unsigned int), 16));
 	else if (format == 'X')
-		len += print_str(to_upper(ft_uitoa(va_arg(va, unsigned int), 16)));
+		len += print_str_free(to_upper(ft_uitoa(va_arg(va, unsigned int), 16)));
 	else if (format == 'p')
 	{
 		len += print_str("0x");
-		len += print_str(ft_uitoa(va_arg(va, unsigned long), 16));
+		len += print_str_free(ft_uitoa(va_arg(va, unsigned long), 16));
 	}
 	else if (format == '%')
 		len += print_char('%');
 	return (len);
 }
 
-int ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
-	va_list va;
-	size_t len;
+	va_list	va;
+	size_t	len;
 
 	len = 0;
 	va_start(va, format);
@@ -68,24 +68,24 @@ int ft_printf(const char *format, ...)
 	va_end(va);
 	return (len);
 }
-#include <stdio.h>
+// #include <limits.h>
+// #include <stdio.h>
 
-int main()
-{
+// int	main(void)
+// {
+// 	// ft_printf("%d", INT_MIN);
 
-	ft_printf("%s%s%s", "And ", "some", "joined");
+// 	int a = -42;
 
-	// int a = -42;
+// 	int len = ft_printf("%i\n", a);
+// 	int len2 = printf("%i\n", a);
+// 	printf("len: %d\n", len);
+// 	printf("len2: %d\n", len2);
 
-	// int len = ft_printf("%i\n", a);
-	// int len2 = printf("%i\n", a);
-	// printf("len: %d\n", len);
-	// printf("len2: %d\n", len2);
-
-	/*	bu senaryoda farklılık var.
-	int len = ft_printf("%\n");
-	int len2 = printf("%\n");
-	printf("len: %d\n", len);
-	printf("len2: %d\n", len2);
-	*/
-}
+// 	/*	bu senaryoda farklılık var.
+// 	int len = ft_printf("%\n");
+// 	int len2 = printf("%\n");
+// 	printf("len: %d\n", len);
+// 	printf("len2: %d\n", len2);
+// 	*/
+// }

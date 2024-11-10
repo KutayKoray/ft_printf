@@ -6,17 +6,17 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:18:35 by kkoray            #+#    #+#             */
-/*   Updated: 2024/11/07 17:28:08 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/11/10 15:31:50 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include "ft_printf.h"
+#include <stdlib.h>
+#include <unistd.h>
 
-void    ft_putchar(char c)
+void	ft_putchar(char c)
 {
-    write(1, &c, 1);
+	write(1, &c, 1);
 }
 
 void	ft_putstr(char *str)
@@ -31,33 +31,53 @@ void	ft_putstr(char *str)
 	}
 }
 
-int print_str(char *s)
+int	print_str(char *s)
 {
-    int i;
+	int	i;
 
-    i = 0;
+	i = 0;
 	if (s == NULL)
 	{
 		ft_putstr("(null)");
 		return (6);
 	}
-    while(s[i])
-    {
-        ft_putchar(s[i]);
-        i++;
-    }
-    return (i);
+	while (s[i])
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
+	return (i);
 }
-char *to_upper(char *str)
-{
-    int i;
 
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] >= 'a' && str[i] <= 'z')
-            str[i] -= 32;
-        i++;
-    }
-    return (str);
+int	print_str_free(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (s == NULL)
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
+	while (s[i])
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
+	free(s);
+	return (i);
+}
+
+char	*to_upper(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] >= 'a' && str[i] <= 'z')
+			str[i] -= 32;
+		i++;
+	}
+	return (str);
 }
