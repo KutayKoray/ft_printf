@@ -69,46 +69,51 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
-// #include <limits.h>
-// #include <stdio.h>
+#include <limits.h>
+#include <stdio.h>
 
-// int	main(void)
-// {
-// 	// ft_printf("%d", INT_MIN);
+int	main(void)
+{
 
-// 	// int a = -42;
 
-// 	// int len = ft_printf("%i\n", a);
-// 	// int len2 = printf("%i\n", a);
-// 	// printf("len: %d\n", len);
-// 	// printf("len2: %d\n", len2);
+	ft_printf(" %c %c %c \n", '0', 0, '1');
+	printf(" %c %c %c \n", '0', 0, '1');
 
-// 	ft_printf(" %p \n", -1);
-//     ft_printf(" %p \n", 1);
-//     ft_printf(" %p \n", 15);
-//     ft_printf(" %p \n", 16);
-//     ft_printf(" %p \n", 17);
-//     ft_printf(" %p %p \n", LONG_MIN, LONG_MAX);
-//     ft_printf(" %p %p \n", INT_MIN, INT_MAX);
-//     ft_printf(" %p %p \n", ULONG_MAX, -ULONG_MAX);
-//     ft_printf(" %p %p \n", 0, 0);
+	// ft_printf("%d", INT_MIN);
 
-// 	printf("--------------------------------\n");
+	// int a = -42;
 
-// 	printf(" %p \n", -1);
-//     printf(" %p \n", 1);
-//     printf(" %p \n", 15);
-//     printf(" %p \n", 16);
-//     printf(" %p \n", 17);
-//     printf(" %p %p \n", LONG_MIN, LONG_MAX);
-//     printf(" %p %p \n", INT_MIN, INT_MAX);
-//     printf(" %p %p \n", ULONG_MAX, -ULONG_MAX);
-//     printf(" %p %p \n", 0, 0);
+	// int len = ft_printf("%i\n", a);
+	// int len2 = printf("%i\n", a);
+	// printf("len: %d\n", len);
+	// printf("len2: %d\n", len2);
 
-// 	/*	bu senaryoda farklılık var.
-// 	int len = ft_printf("%\n");
-// 	int len2 = printf("%\n");
-// 	printf("len: %d\n", len);
-// 	printf("len2: %d\n", len2);
-// 	*/
-// }
+	// ft_printf(" %p \n", -1);
+    // ft_printf(" %p \n", 1);
+    // ft_printf(" %p \n", 15);
+    // ft_printf(" %p \n", 16);
+    // ft_printf(" %p \n", 17);
+    // ft_printf(" %p %p \n", LONG_MIN, LONG_MAX);
+    // ft_printf(" %p %p \n", INT_MIN, INT_MAX);
+    // ft_printf(" %p %p \n", ULONG_MAX, -ULONG_MAX);
+    // ft_printf(" %p %p \n", 0, 0);
+
+	// printf("--------------------------------\n");
+
+	// printf(" %p \n", -1);
+    // printf(" %p \n", 1);
+    // printf(" %p \n", 15);
+    // printf(" %p \n", 16);
+    // printf(" %p \n", 17);
+    // printf(" %p %p \n", LONG_MIN, LONG_MAX);
+    // printf(" %p %p \n", INT_MIN, INT_MAX);
+    // printf(" %p %p \n", ULONG_MAX, -ULONG_MAX);
+    // printf(" %p %p \n", 0, 0);
+
+	/*	bu senaryoda farklılık var.
+	int len = ft_printf("%\n");
+	int len2 = printf("%\n");
+	printf("len: %d\n", len);
+	printf("len2: %d\n", len2);
+	*/
+}
