@@ -74,6 +74,8 @@ char	*ft_itoa(int value, int base)
 	is_negative = handle_negative(&value);
 	length = get_length(value, base);
 	buffer = malloc((length + 1 + is_negative) * sizeof(char));
+	if (!buffer)
+		return (NULL);
 	if (value == 0)
 	{
 		buffer[i++] = '0';

@@ -16,17 +16,24 @@
 
 void	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	int check_error;
+
+	check_error = write(1, &c, 1);
+	if (check_error == -1)
+		exit (1);
 }
 
 void	ft_putstr(char *str)
 {
 	int	i;
-
+	int check_error;
+	
 	i = 0;
 	while (str[i])
 	{
-		write(1, &str[i], 1);
+		check_error = write(1, &str[i], 1);
+		if (check_error == -1)
+			exit (1);
 		i++;
 	}
 }

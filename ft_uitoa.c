@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 char	*ft_uitoa(unsigned long value, int base)
@@ -25,6 +24,8 @@ char	*ft_uitoa(unsigned long value, int base)
 	i = 0;
 	length = get_length(value, base);
 	buffer = malloc((length + 1) * sizeof(char));
+	if (!buffer)
+		return (NULL);
 	if (value == 0)
 	{
 		buffer[i++] = '0';
