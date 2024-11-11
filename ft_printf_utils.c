@@ -11,29 +11,29 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <unistd.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 void	ft_putchar(char c)
 {
-	int check_error;
+	int	check_error;
 
 	check_error = write(1, &c, 1);
 	if (check_error == -1)
-		exit (1);
+		exit(1);
 }
 
 void	ft_putstr(char *str)
 {
 	int	i;
-	int check_error;
-	
+	int	check_error;
+
 	i = 0;
 	while (str[i])
 	{
 		check_error = write(1, &str[i], 1);
 		if (check_error == -1)
-			exit (1);
+			exit(1);
 		i++;
 	}
 }

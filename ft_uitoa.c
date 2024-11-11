@@ -15,11 +15,10 @@
 
 char	*ft_uitoa(unsigned long value, int base)
 {
-	// printf("\n%lu\n", value);
 	unsigned long	i;
 	unsigned long	length;
-	char	*buffer;
-	int		remainder;
+	char			*buffer;
+	int				remainder;
 
 	i = 0;
 	length = get_length(value, base);
