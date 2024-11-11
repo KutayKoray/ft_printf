@@ -43,7 +43,8 @@ int	ft_printf(const char *format, ...)
 			else if (*format == 'x')
 				len += print_str_free(ft_uitoa(va_arg(va, unsigned int), 16));
 			else if (*format == 'X')
-				len += print_str_free(to_upper(ft_uitoa(va_arg(va, unsigned int), 16)));
+				len += print_str_free(to_upper(ft_uitoa(va_arg(va,
+									unsigned int), 16)));
 			else if (*format == 'p')
 			{
 				len += print_str("0x");
