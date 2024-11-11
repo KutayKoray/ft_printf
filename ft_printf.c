@@ -20,33 +20,6 @@ int	print_char(int c)
 	return (1);
 }
 
-int	v_format(va_list va, const char format)
-{
-	int	len;
-
-	len = 0;
-	if (format == 'c')
-		len += print_char(va_arg(va, int));
-	else if (format == 's')
-		len += print_str(va_arg(va, char *));
-	else if (format == 'd' || format == 'i')
-		len += print_str_free(ft_itoa(va_arg(va, int), 10));
-	else if (format == 'u')
-		len += print_str_free(ft_uitoa(va_arg(va, unsigned int), 10));
-	else if (format == 'x')
-		len += print_str_free(ft_uitoa(va_arg(va, unsigned int), 16));
-	else if (format == 'X')
-		len += print_str_free(to_upper(ft_uitoa(va_arg(va, unsigned int), 16)));
-	else if (format == 'p')
-	{
-		len += print_str("0x");
-		len += print_str_free(ft_uitoa(va_arg(va, unsigned long), 16));
-	}
-	else if (format == '%')
-		len += print_char('%');
-	return (len);
-}
-
 int	ft_printf(const char *format, ...)
 {
 	va_list	va;
@@ -59,7 +32,25 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			len += v_format(va, *format);
+			if (*format == 'c')
+				len += print_char(va_arg(va, int));
+			else if (*format == 's')
+				len += print_str(va_arg(va, char *));
+			else if (*format == 'd' || *format == 'i')
+				len += print_str_free(ft_itoa(va_arg(va, int), 10));
+			else if (*format == 'u')
+				len += print_str_free(ft_uitoa(va_arg(va, unsigned int), 10));
+			else if (*format == 'x')
+				len += print_str_free(ft_uitoa(va_arg(va, unsigned int), 16));
+			else if (*format == 'X')
+				len += print_str_free(to_upper(ft_uitoa(va_arg(va, unsigned int), 16)));
+			else if (*format == 'p')
+			{
+				len += print_str("0x");
+				len += print_str_free(ft_uitoa(va_arg(va, unsigned long), 16));
+			}
+			else if (*format == '%')
+				len += print_char('%');
 		}
 		else
 			len += print_char(*format);
