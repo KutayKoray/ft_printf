@@ -58,6 +58,20 @@ unsigned long	get_length(unsigned long value, int base)
 	return (length);
 }
 
+char    *ft_strcpy(char *s1, char *s2)
+  {
+      int i;
+ 
+      i = 0;
+      while (s2[i])
+      {
+          s1[i] = s2[i];
+          i++;
+      }
+      s1[i] = s2[i];
+      return (s1);
+  }
+
 char	*ft_itoa(int value, int base)
 {
 	int		i;
@@ -68,7 +82,7 @@ char	*ft_itoa(int value, int base)
 
 	i = 0;
 	if (value == -2147483648) // strcpy kaldır francinette bak.
-		return (buffer = malloc(12 * sizeof(char)), strcpy(buffer,
+		return (buffer = malloc(12 * sizeof(char)), ft_strcpy(buffer,
 				"-2147483648"), buffer);
 	is_negative = handle_negative(&value);
 	length = get_length(value, base);
