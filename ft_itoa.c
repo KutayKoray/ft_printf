@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -68,7 +67,7 @@ char	*ft_itoa(int value, int base)
 	int		remainder;
 
 	i = 0;
-	if (value == -2147483648)
+	if (value == -2147483648) // strcpy kaldır francinette bak.
 		return (buffer = malloc(12 * sizeof(char)), strcpy(buffer,
 				"-2147483648"), buffer);
 	is_negative = handle_negative(&value);

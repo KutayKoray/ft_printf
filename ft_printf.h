@@ -13,8 +13,6 @@
 #ifndef FT_PRINTF
 # define FT_PRINTF
 
-#include <stddef.h>
-
 void	ft_putnbr(int n);
 void	ft_putchar(char c);
 char	*ft_itoa(int n, int base);
