@@ -6,14 +6,14 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 15:33:12 by kkoray            #+#    #+#             */
-/*   Updated: 2024/11/10 15:37:37 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/11/13 17:02:11 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include <stdlib.h>
-#include <string.h>
 
-void	reverse(char *buffer, int length)
+void	reverse(char *buffer, unsigned long length)
 {
 	int		start;
 	int		end;
@@ -31,7 +31,7 @@ void	reverse(char *buffer, int length)
 	}
 }
 
-int	handle_negative(int *value)
+static int	handle_negative(int *value)
 {
 	if (*value < 0)
 	{
@@ -39,23 +39,6 @@ int	handle_negative(int *value)
 		return (1);
 	}
 	return (0);
-}
-
-unsigned long	get_length(unsigned long value, int base)
-{
-	unsigned long	length;
-
-	length = 0;
-	if (value == 0)
-	{
-		return (1);
-	}
-	while (value != 0)
-	{
-		length++;
-		value = value / base;
-	}
-	return (length);
 }
 
 char	*ft_strcpy(char *s1, char *s2)
@@ -72,43 +55,46 @@ char	*ft_strcpy(char *s1, char *s2)
 	return (s1);
 }
 
+static int	get_length(int value, int base)
+{
+	int	length;
+
+	length = 0;
+	if (value == 0)
+		return (1);
+	while (value != 0)
+	{
+		length++;
+		value = value / base;
+	}
+	return (length);
+}
+
 char	*ft_itoa(int value, int base)
 {
 	int		i;
 	int		is_negative;
-	int		length;
 	char	*buffer;
-	int		remainder;
 
 	i = 0;
 	if (value == -2147483648)
 		return (buffer = malloc(12 * sizeof(char)), ft_strcpy(buffer,
 				"-2147483648"), buffer);
 	is_negative = handle_negative(&value);
-	length = get_length(value, base);
-	buffer = malloc((length + 1 + is_negative) * sizeof(char));
+	buffer = malloc((get_length(value, base) + 1 + is_negative) * sizeof(char));
 	if (!buffer)
 		return (NULL);
 	if (value == 0)
-	{
-		buffer[i++] = '0';
-		buffer[i] = '\0';
-		return (buffer);
-	}
+		return (buffer[i++] = '0', buffer[i] = '\0', buffer);
 	while (value != 0)
 	{
-		remainder = value % base;
-		if (remainder > 9)
-			buffer[i++] = remainder - 10 + 'a';
+		if (value % base > 9)
+			buffer[i++] = value % base - 10 + 'a';
 		else
-			buffer[i++] = remainder + '0';
+			buffer[i++] = value % base + '0';
 		value = value / base;
 	}
 	if (is_negative)
-	{
 		buffer[i++] = '-';
-	}
-	buffer[i] = '\0';
-	reverse(buffer, i);
-	return (buffer);
+	return (buffer[i] = '\0', reverse(buffer, i), buffer);
 }

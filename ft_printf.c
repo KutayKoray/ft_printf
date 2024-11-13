@@ -6,7 +6,7 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 16:52:30 by kkoray            #+#    #+#             */
-/*   Updated: 2024/11/10 15:29:01 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/11/13 16:59:55 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	print_char(int c)
 	return (1);
 }
 
-int	v_format(va_list va, const char format)
+static int	v_format(va_list va, const char format)
 {
 	int	len;
 
@@ -68,11 +68,3 @@ int	ft_printf(const char *format, ...)
 	va_end(va);
 	return (len);
 }
-
-// #include <limits.h>
-// #include <stdio.h>
-
-// int	main(void)
-// {
-
-// }

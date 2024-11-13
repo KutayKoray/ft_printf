@@ -6,11 +6,10 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:18:35 by kkoray            #+#    #+#             */
-/*   Updated: 2024/11/10 15:31:50 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/11/13 17:03:47 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -23,7 +22,7 @@ void	ft_putchar(char c)
 		exit(1);
 }
 
-void	ft_putstr(char *str)
+static void	ft_putstr(char *str)
 {
 	int	i;
 	int	check_error;
