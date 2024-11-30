@@ -6,68 +6,69 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:18:35 by kkoray            #+#    #+#             */
-/*   Updated: 2024/11/13 17:03:47 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/11/14 15:45:47 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 
-void	ft_putchar(char c)
+ssize_t	ft_putchar(char c)
 {
-	int	check_error;
-
-	check_error = write(1, &c, 1);
-	if (check_error == -1)
-		exit(1);
+	return (write(1, &c, 1));
 }
 
-static void	ft_putstr(char *str)
+static ssize_t	ft_putstr(char *str)
 {
-	int	i;
-	int	check_error;
+	ssize_t	i;
+	ssize_t	check_error;
 
 	i = 0;
 	while (str[i])
 	{
 		check_error = write(1, &str[i], 1);
 		if (check_error == -1)
-			exit(1);
-		i++;
-	}
-}
-
-int	print_str(char *s)
-{
-	int	i;
-
-	i = 0;
-	if (s == NULL)
-	{
-		ft_putstr("(null)");
-		return (6);
-	}
-	while (s[i])
-	{
-		ft_putchar(s[i]);
+			return (check_error);
 		i++;
 	}
 	return (i);
 }
 
-int	print_str_free(char *s)
+ssize_t	print_str(char *s)
 {
-	int	i;
+	ssize_t	i;
+	int		check_error;
 
 	i = 0;
+	check_error = 0;
+	if (s == NULL)
+		return (ft_putstr("(null)"));
+	while (s[i])
+	{
+		check_error = ft_putchar(s[i]);
+		if (check_error == -1)
+			return (-1);
+		i++;
+	}
+	return (i);
+}
+
+ssize_t	print_str_free(char *s)
+{
+	ssize_t	i;
+	int		check_error;
+
+	i = 0;
+	check_error = 0;
 	if (s == NULL)
 	{
-		ft_putstr("(null)");
-		return (6);
+		return (ft_putstr("(null)"));
 	}
 	while (s[i])
 	{
-		ft_putchar(s[i]);
+		check_error = ft_putchar(s[i]);
+		if (check_error == -1)
+			return (-1);
 		i++;
 	}
 	free(s);

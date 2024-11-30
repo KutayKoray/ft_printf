@@ -6,24 +6,37 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 16:52:30 by kkoray            #+#    #+#             */
-/*   Updated: 2024/11/13 16:59:55 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/11/14 16:14:48 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdarg.h>
-#include <stddef.h>
+#include <unistd.h>
 
-int	print_char(int c)
+static ssize_t	print_char(int c)
 {
-	ft_putchar(c);
-	return (1);
+	return (ft_putchar(c));
+}
+
+static ssize_t	print_ptr(void *val)
+{
+	ssize_t	len;
+
+	len = 0;
+	if (val == NULL)
+		return (print_str("(nil)"));
+	len += print_str("0x");
+	len += print_str_free(ft_uitoa((unsigned long)val, 16));
+	return (len);
 }
 
 static int	v_format(va_list va, const char format)
 {
-	int	len;
+	ssize_t	len;
 
+	if (!format)
+		return (-1);
 	len = 0;
 	if (format == 'c')
 		len += print_char(va_arg(va, int));
@@ -38,10 +51,7 @@ static int	v_format(va_list va, const char format)
 	else if (format == 'X')
 		len += print_str_free(to_upper(ft_uitoa(va_arg(va, unsigned int), 16)));
 	else if (format == 'p')
-	{
-		len += print_str("0x");
-		len += print_str_free(ft_uitoa(va_arg(va, unsigned long), 16));
-	}
+		len += print_ptr(va_arg(va, void *));
 	else if (format == '%')
 		len += print_char('%');
 	return (len);
@@ -50,7 +60,8 @@ static int	v_format(va_list va, const char format)
 int	ft_printf(const char *format, ...)
 {
 	va_list	va;
-	size_t	len;
+	int		len;
+	int		is_error;
 
 	len = 0;
 	va_start(va, format);
@@ -58,8 +69,12 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
+			is_error = 0;
 			format++;
-			len += v_format(va, *format);
+			is_error += v_format(va, *format);
+			if (is_error == -1)
+				return (-1);
+			len += is_error;
 		}
 		else
 			len += print_char(*format);

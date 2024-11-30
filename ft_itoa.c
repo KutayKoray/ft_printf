@@ -6,7 +6,7 @@
 /*   By: kkoray <kkoray@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 15:33:12 by kkoray            #+#    #+#             */
-/*   Updated: 2024/11/13 17:02:11 by kkoray           ###   ########.fr       */
+/*   Updated: 2024/11/13 17:39:57 by kkoray           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	handle_negative(int *value)
 	return (0);
 }
 
-char	*ft_strcpy(char *s1, char *s2)
+static char	*ft_strcpy(char *s1, char *s2)
 {
 	int	i;
 
